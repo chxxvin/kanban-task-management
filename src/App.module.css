@@ -1,0 +1,17 @@
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  min-height: 80px;
+  width: 100%;
+  background-color: white;
+}
+
+main {
+  padding-top: 80px;
+  display: flex;
+  min-height: 100vh;
+}

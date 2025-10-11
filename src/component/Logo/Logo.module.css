@@ -1,0 +1,16 @@
+.logo {
+  display: flex;
+  gap: 15px;
+  min-width: 250px;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.logo > img {
+  width: 25px;
+  height: 25px;
+}
+
+.logo > h3 {
+  font-size: 2rem;
+}

@@ -1,0 +1,32 @@
+.board {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 280px;
+  overflow-x: auto;
+  gap: 25px;
+  padding: 35px 25px;
+  background-color: #f4f7fd;
+  width: 100%;
+}
+
+.columnName {
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #828fa3;
+}
+
+.addColumn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  background: linear-gradient(180deg, #e9effa, rgba(233, 239, 250, 0.5));
+  color: #828fa3;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.addColumn:hover {
+  color: #635fc7;
+}
