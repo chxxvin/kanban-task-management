@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import Task from '../Task/Task';
 import style from './Board.module.css';
 
@@ -95,9 +96,20 @@ const boards = {
   ],
 };
 
-function Board() {
+function Board({ isSidebarHide }) {
+  const boardRef = useRef(null);
+
+  useEffect(() => {
+    const board = boardRef.current;
+    if (isSidebarHide) {
+      board.classList.add(`${style.full}`);
+    } else {
+      board.classList.remove(`${style.full}`);
+    }
+  }, [isSidebarHide]);
+
   return (
-    <div className={style.board}>
+    <div className={style.board} ref={boardRef}>
       {Object.entries(boards).map(([columnName, tasks], index) => {
         return (
           <div className={style.column} key={index}>

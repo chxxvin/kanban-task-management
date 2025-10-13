@@ -9,6 +9,7 @@ import { useState } from 'react';
 function App() {
   const boards = ['Platform Launch', 'Marketing Plan', 'Roadmap'];
   const [selectBoard, setSelectBoard] = useState(boards[0]);
+  const [isSidebarHide, setIsSidebarHide] = useState(false);
 
   return (
     <>
@@ -17,8 +18,14 @@ function App() {
         <Heading selectBoard={selectBoard} />
       </header>
       <main>
-        <Sidebar boards={boards} selectBoard={selectBoard} />
-        <Board />
+        <Sidebar
+          boards={boards}
+          selectBoard={selectBoard}
+          setSelectBoard={setSelectBoard}
+          isSidebarHide={isSidebarHide}
+          setIsSidebarHide={setIsSidebarHide}
+        />
+        <Board isSidebarHide={isSidebarHide} />
       </main>
     </>
   );
