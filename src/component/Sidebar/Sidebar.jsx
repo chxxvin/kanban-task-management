@@ -15,6 +15,7 @@ function Sidebar({
   setSelectBoard,
   isSidebarHide,
   setIsSidebarHide,
+  setIsModal,
 }) {
   const [lightMode, setLightMode] = useState(true);
 
@@ -56,7 +57,7 @@ function Sidebar({
               </li>
             );
           })}
-          <li className={style.createBoard}>
+          <li className={style.createBoard} onClick={() => setIsModal(true)}>
             <img src={iconBoard} alt="icon-board" /> + Create New Board
           </li>
         </ul>
