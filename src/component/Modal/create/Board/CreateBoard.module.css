@@ -81,6 +81,7 @@
   border-radius: 20px;
   font-size: 13px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .buttonForm button:last-child {
