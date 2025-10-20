@@ -57,7 +57,10 @@ function Sidebar({
               </li>
             );
           })}
-          <li className={style.createBoard} onClick={() => setIsModal(true)}>
+          <li
+            className={style.createBoard}
+            onClick={() => setIsModal('createBoard')}
+          >
             <img src={iconBoard} alt="icon-board" /> + Create New Board
           </li>
         </ul>

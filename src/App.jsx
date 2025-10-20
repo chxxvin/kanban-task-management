@@ -6,6 +6,8 @@ import Sidebar from './component/Sidebar/Sidebar';
 import Board from './component/Board/Board';
 import { useState } from 'react';
 import Modal from './component/Modal/Modal';
+import CreateBoard from './component/Modal/create/Board/CreateBoard';
+import CreateTask from './component/Modal/create/Task/CreateTask';
 
 function App() {
   const boards = ['Platform Launch', 'Marketing Plan', 'Roadmap'];
@@ -17,7 +19,7 @@ function App() {
     <>
       <header>
         <Logo />
-        <Heading selectBoard={selectBoard} />
+        <Heading selectBoard={selectBoard} setIsModal={setIsModal} />
       </header>
       <main>
         <Sidebar
@@ -31,9 +33,8 @@ function App() {
         <Board isSidebarHide={isSidebarHide} />
       </main>
       <Modal isOpen={isModal} onClose={() => setIsModal(false)}>
-        <h2>Halo Dunia!</h2>
-        <p>Ini adalah konten di dalam modal.</p>
-        <button onClick={() => setIsModal(false)}>Tutup</button>
+        {isModal === 'createBoard' && <CreateBoard />}
+        {isModal === 'createTask' && <CreateTask />}
       </Modal>
     </>
   );
