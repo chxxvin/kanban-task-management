@@ -1,0 +1,88 @@
+.boardName {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.boardName label {
+  font-size: 12px;
+  font-weight: bold;
+  color: #828fa3;
+}
+
+.boardName input {
+  padding: 10px 15px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid rgba(130, 143, 163, 0.25);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.boardName input::placeholder {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.boardName input:focus {
+  outline: 1px solid #635fc7;
+}
+
+.columnContainer {
+  margin-top: 20px;
+}
+
+.columnContainer h3 {
+  font-size: 12px;
+  margin-bottom: 15px;
+  color: #828fa3;
+}
+
+.modalColumn {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.modalColumn input {
+  width: 100%;
+  margin-right: 5px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid rgba(130, 143, 163, 0.25);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.modalColumn input::placeholder {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.modalColumn input:focus {
+  outline: 1px solid #635fc7;
+}
+
+.modalColumn button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.buttonForm button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  color: white;
+  background-color: #635fc7;
+  border: none;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.buttonForm button:last-child {
+  margin-bottom: 0;
+}

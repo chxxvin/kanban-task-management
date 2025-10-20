@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import iconCross from '../../../../assets/icon-cross.svg';
+import style from './CreateBoard.module.css';
 
 function CreateBoard() {
   const [boardName, setBoardName] = useState('');
@@ -20,10 +21,10 @@ function CreateBoard() {
   }
 
   return (
-    <>
+    <div>
       <h3>Add new board</h3>
       <form action="/">
-        <div>
+        <div className={style.boardName}>
           <label htmlFor="board-name">Board Name</label>
           <input
             type="text"
@@ -34,29 +35,36 @@ function CreateBoard() {
             placeholder="e.g Web Design"
           />
         </div>
-        <div>
-          <h3>Board Column</h3>
-          {columns.map((column, index) => {
-            return (
-              <>
-                <input
-                  key={index}
-                  value={column}
-                  onChange={(e) => handleChangeColumn(index, e.target.value)}
-                />
-                <div onClick={() => handleDeleteColumn(index)}>
-                  <img src={iconCross} alt="delete button" />
+        <div className={style.columnContainer}>
+          <h3>Board Columns</h3>
+          <div>
+            {columns.map((column, index) => {
+              return (
+                <div className={style.modalColumn} key={index}>
+                  <input
+                    value={column}
+                    onChange={(e) => handleChangeColumn(index, e.target.value)}
+                    placeholder="e.g Done"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => handleDeleteColumn(index)}
+                  >
+                    <img src={iconCross} alt="delete button" />
+                  </button>
                 </div>
-              </>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-        <button type="button" onClick={handleAddColumn}>
-          + add column
-        </button>
-        <button>Create New Board</button>
+        <div className={style.buttonForm}>
+          <button type="button" onClick={handleAddColumn}>
+            + Add New Column
+          </button>
+          <button>Create New Board</button>
+        </div>
       </form>
-    </>
+    </div>
   );
 }
 
