@@ -9,8 +9,13 @@ import Modal from './component/Modal/Modal';
 import CreateBoard from './component/Modal/create/Board/CreateBoard';
 import CreateTask from './component/Modal/create/Task/CreateTask';
 
+const boards = [
+  { id: 'board-101', name: 'Website Launch' },
+  { id: 'board-102', name: 'Mobile App Development' },
+  { id: 'board-103', name: 'Content Strategy Planning' },
+];
+
 function App() {
-  const boards = ['Platform Launch', 'Marketing Plan', 'Roadmap'];
   const [selectBoard, setSelectBoard] = useState(boards[0]);
   const [isSidebarHide, setIsSidebarHide] = useState(false);
   const [isModal, setIsModal] = useState(false);
@@ -30,7 +35,7 @@ function App() {
           setIsSidebarHide={setIsSidebarHide}
           setIsModal={setIsModal}
         />
-        <Board isSidebarHide={isSidebarHide} />
+        <Board isSidebarHide={isSidebarHide} selectBoard={selectBoard} />
       </main>
       <Modal isOpen={isModal} onClose={() => setIsModal(false)}>
         {isModal === 'createBoard' && <CreateBoard />}

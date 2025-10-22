@@ -3,7 +3,7 @@ import style from './Heading.module.css';
 function Heading({ selectBoard, setIsModal }) {
   return (
     <div className={style.heading}>
-      <h3>{selectBoard}</h3>
+      <h3>{selectBoard.name}</h3>
       <div className={style.modifyButton}>
         <button onClick={() => setIsModal('createTask')}>+ Add New Task</button>
         <div className={style.elipsis}>

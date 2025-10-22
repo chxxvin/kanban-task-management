@@ -4,9 +4,9 @@ function Task({ task }) {
   return (
     <div className={style.task}>
       <h3 className={style.titleTask}>{task.title}</h3>
-      <p className={style.subtask}>
+      {/* <p className={style.subtask}>
         {task.subtasks_done} of {task.subtasks_total} subtasks
-      </p>
+      </p> */}
     </div>
   );
 }

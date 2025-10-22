@@ -45,15 +45,17 @@ function Sidebar({
             return (
               <li
                 key={i}
-                className={selectBoard === board ? style.selected : ''}
+                className={
+                  selectBoard.name === board.name ? style.selected : ''
+                }
                 onClick={
-                  selectBoard !== board
+                  selectBoard !== board.name
                     ? () => onSelectBoard(board, setSelectBoard)
                     : undefined
                 }
               >
                 <img src={iconBoard} alt="icon-board" />
-                {board}
+                {board.name}
               </li>
             );
           })}
