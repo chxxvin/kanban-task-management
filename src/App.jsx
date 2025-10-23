@@ -4,12 +4,13 @@ import Logo from './component/Logo/Logo';
 import Heading from './component/Heading/Heading';
 import Sidebar from './component/Sidebar/Sidebar';
 import Board from './component/Board/Board';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Modal from './component/Modal/Modal';
 import CreateBoard from './component/Modal/create/Board/CreateBoard';
 import CreateTask from './component/Modal/create/Task/CreateTask';
 
 import dummy from './data/dummy';
+import EditBoard from './component/Modal/edit/board/EditBoard';
 
 function App() {
   const [boards, setBoards] = useState(dummy);
@@ -23,6 +24,10 @@ function App() {
   }));
 
   const taskBoards = boards.find((board) => board.id === selectBoard.id);
+
+  useEffect(() => {
+    setSelectBoard((prev) => boards.find((board) => board.id === prev.id));
+  }, [boards]);
 
   return (
     <>
@@ -44,6 +49,13 @@ function App() {
       <Modal isOpen={isModal} onClose={() => setIsModal(false)}>
         {isModal === 'createBoard' && (
           <CreateBoard setBoards={setBoards} setIsModal={setIsModal} />
+        )}
+        {isModal === 'editBoard' && (
+          <EditBoard
+            taskBoards={taskBoards}
+            setBoards={setBoards}
+            setIsModal={setIsModal}
+          />
         )}
         {isModal === 'createTask' && <CreateTask />}
       </Modal>

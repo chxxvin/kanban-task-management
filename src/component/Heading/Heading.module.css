@@ -43,3 +43,31 @@
   border-radius: 50%;
   background-color: #9aa6b2;
 }
+
+.elipsisMenu {
+  display: none;
+  position: fixed;
+  top: 80px;
+  right: 35px;
+  width: 150px;
+  padding: 15px 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 10px 20px rgba(54, 78, 126, 0.25);
+}
+
+.elipsisMenu button {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  font-size: 13px;
+  text-align: left;
+  border: none;
+  color: #828fa3;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.elipsisMenu button.deleteButton {
+  color: red;
+}
