@@ -1,19 +1,10 @@
 import { useEffect, useRef } from 'react';
 import Task from '../Task/Task';
 import style from './Board.module.css';
-import dummy from '../../data/dummy';
 
-const data = dummy;
-
-console.log(dummy);
-
-function Board({ isSidebarHide, selectBoard }) {
-  const [dataBoard] = data.filter((board) => board.id === selectBoard.id);
+function Board({ isSidebarHide, taskBoards }) {
   const boardRef = useRef(null);
-
-  const colBoard = dataBoard.columns;
-
-  console.log(colBoard);
+  const colBoard = taskBoards ? taskBoards.columns : [];
 
   useEffect(() => {
     const board = boardRef.current;

@@ -9,16 +9,20 @@ import Modal from './component/Modal/Modal';
 import CreateBoard from './component/Modal/create/Board/CreateBoard';
 import CreateTask from './component/Modal/create/Task/CreateTask';
 
-const boards = [
-  { id: 'board-101', name: 'Website Launch' },
-  { id: 'board-102', name: 'Mobile App Development' },
-  { id: 'board-103', name: 'Content Strategy Planning' },
-];
+import dummy from './data/dummy';
 
 function App() {
+  const [boards, setBoards] = useState(dummy);
   const [selectBoard, setSelectBoard] = useState(boards[0]);
   const [isSidebarHide, setIsSidebarHide] = useState(false);
   const [isModal, setIsModal] = useState(false);
+
+  const nameBoards = boards.map((data) => ({
+    id: data.id,
+    name: data.name,
+  }));
+
+  const taskBoards = boards.find((board) => board.id === selectBoard.id);
 
   return (
     <>
@@ -28,17 +32,19 @@ function App() {
       </header>
       <main>
         <Sidebar
-          boards={boards}
+          boards={nameBoards}
           selectBoard={selectBoard}
           setSelectBoard={setSelectBoard}
           isSidebarHide={isSidebarHide}
           setIsSidebarHide={setIsSidebarHide}
           setIsModal={setIsModal}
         />
-        <Board isSidebarHide={isSidebarHide} selectBoard={selectBoard} />
+        <Board isSidebarHide={isSidebarHide} taskBoards={taskBoards} />
       </main>
       <Modal isOpen={isModal} onClose={() => setIsModal(false)}>
-        {isModal === 'createBoard' && <CreateBoard />}
+        {isModal === 'createBoard' && (
+          <CreateBoard setBoards={setBoards} setIsModal={setIsModal} />
+        )}
         {isModal === 'createTask' && <CreateTask />}
       </Modal>
     </>

@@ -55,14 +55,6 @@ const boards = [
               { id: 'st-112', title: 'Review cookies page', done: false },
             ],
           },
-          {
-            id: 'task-107',
-            title: 'Organize pre-launch email campaign',
-            subtasks: [
-              { id: 'st-113', title: 'Segment users', done: false },
-              { id: 'st-114', title: 'Write email copy', done: false },
-            ],
-          },
         ],
       },
       {
@@ -171,22 +163,6 @@ const boards = [
               { id: 'st-138', title: 'Record feedback', done: true },
             ],
           },
-          {
-            id: 'task-120',
-            title: 'Design logo variations',
-            subtasks: [
-              { id: 'st-139', title: 'Flat version', done: true },
-              { id: 'st-140', title: 'Monochrome version', done: true },
-            ],
-          },
-          {
-            id: 'task-121',
-            title: 'Write post-launch checklist',
-            subtasks: [
-              { id: 'st-141', title: 'SEO recheck', done: true },
-              { id: 'st-142', title: 'Performance audit', done: true },
-            ],
-          },
         ],
       },
     ],
@@ -237,22 +213,6 @@ const boards = [
             subtasks: [
               { id: 'st-209', title: 'Illustration concept', done: false },
               { id: 'st-210', title: 'Animation timing', done: false },
-            ],
-          },
-          {
-            id: 'task-206',
-            title: 'Define navigation routes',
-            subtasks: [
-              { id: 'st-211', title: 'Bottom tabs', done: false },
-              { id: 'st-212', title: 'Stack navigation', done: false },
-            ],
-          },
-          {
-            id: 'task-207',
-            title: 'Set up API endpoints for user data',
-            subtasks: [
-              { id: 'st-213', title: 'GET/POST routes', done: false },
-              { id: 'st-214', title: 'Error handling', done: false },
             ],
           },
         ],
@@ -355,30 +315,6 @@ const boards = [
               { id: 'st-236', title: 'Add to components', done: true },
             ],
           },
-          {
-            id: 'task-219',
-            title: 'Test Android build',
-            subtasks: [
-              { id: 'st-237', title: 'Run emulator', done: true },
-              { id: 'st-238', title: 'Fix warnings', done: true },
-            ],
-          },
-          {
-            id: 'task-220',
-            title: 'Test iOS build',
-            subtasks: [
-              { id: 'st-239', title: 'Run Xcode build', done: true },
-              { id: 'st-240', title: 'Check icons', done: true },
-            ],
-          },
-          {
-            id: 'task-221',
-            title: 'Setup GitHub Actions for CI',
-            subtasks: [
-              { id: 'st-241', title: 'YAML config', done: true },
-              { id: 'st-242', title: 'Test auto build', done: true },
-            ],
-          },
         ],
       },
     ],
@@ -413,38 +349,6 @@ const boards = [
             subtasks: [
               { id: 'st-305', title: 'Set weekly themes', done: false },
               { id: 'st-306', title: 'Pick visuals', done: false },
-            ],
-          },
-          {
-            id: 'task-304',
-            title: 'Outline video content ideas',
-            subtasks: [
-              { id: 'st-307', title: 'Script brainstorming', done: false },
-              { id: 'st-308', title: 'Visual concepting', done: false },
-            ],
-          },
-          {
-            id: 'task-305',
-            title: 'Create content distribution plan',
-            subtasks: [
-              { id: 'st-309', title: 'List platforms', done: false },
-              { id: 'st-310', title: 'Set frequency', done: false },
-            ],
-          },
-          {
-            id: 'task-306',
-            title: 'Define KPIs and metrics',
-            subtasks: [
-              { id: 'st-311', title: 'Engagement metrics', done: false },
-              { id: 'st-312', title: 'Conversion goals', done: false },
-            ],
-          },
-          {
-            id: 'task-307',
-            title: 'Plan influencer outreach',
-            subtasks: [
-              { id: 'st-313', title: 'Identify partners', done: false },
-              { id: 'st-314', title: 'Contact proposals', done: false },
             ],
           },
         ],
@@ -491,22 +395,6 @@ const boards = [
             subtasks: [
               { id: 'st-323', title: 'Set Zapier rules', done: false },
               { id: 'st-324', title: 'Check logs', done: false },
-            ],
-          },
-          {
-            id: 'task-313',
-            title: 'Collaborate with SEO team',
-            subtasks: [
-              { id: 'st-325', title: 'Align content calendar', done: false },
-              { id: 'st-326', title: 'Update keywords', done: false },
-            ],
-          },
-          {
-            id: 'task-314',
-            title: 'Review video script for ad campaign',
-            subtasks: [
-              { id: 'st-327', title: 'Add brand tone', done: false },
-              { id: 'st-328', title: 'Final approval', done: false },
             ],
           },
         ],
@@ -561,14 +449,6 @@ const boards = [
             subtasks: [
               { id: 'st-339', title: 'Render final cut', done: true },
               { id: 'st-340', title: 'Post on YouTube', done: true },
-            ],
-          },
-          {
-            id: 'task-321',
-            title: 'Finalize influencer contracts',
-            subtasks: [
-              { id: 'st-341', title: 'Legal review', done: true },
-              { id: 'st-342', title: 'Sign agreements', done: true },
             ],
           },
         ],
