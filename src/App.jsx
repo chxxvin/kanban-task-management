@@ -4,30 +4,37 @@ import Logo from './component/Logo/Logo';
 import Heading from './component/Heading/Heading';
 import Sidebar from './component/Sidebar/Sidebar';
 import Board from './component/Board/Board';
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import Modal from './component/Modal/Modal';
-import CreateBoard from './component/Modal/create/Board/CreateBoard';
 import CreateTask from './component/Modal/create/Task/CreateTask';
+import BaseBoard from './component/Modal/board/BaseBoard';
 
 import dummy from './data/dummy';
-import EditBoard from './component/Modal/edit/board/EditBoard';
+import DeleteBoard from './component/Modal/board/DeleteBoard';
+import useBoards from './hooks/useBoards';
 
 function App() {
-  const [boards, setBoards] = useState(dummy);
-  const [selectBoard, setSelectBoard] = useState(boards[0]);
-  const [isSidebarHide, setIsSidebarHide] = useState(false);
+  const [data, setData] = useState(dummy);
   const [isModal, setIsModal] = useState(false);
 
-  const nameBoards = boards.map((data) => ({
-    id: data.id,
-    name: data.name,
-  }));
+  const boards = useMemo(() => {
+    return data.map((d) => ({
+      id: d.id,
+      name: d.name,
+    }));
+  }, [data]);
 
-  const taskBoards = boards.find((board) => board.id === selectBoard.id);
+  const {
+    selectBoard,
+    setSelectBoard,
+    isSidebarHide,
+    setIsSidebarHide,
+    handleCreateBoard,
+    handleEditBoard,
+    handleDeleteBoard,
+  } = useBoards(boards);
 
-  useEffect(() => {
-    setSelectBoard((prev) => boards.find((board) => board.id === prev.id));
-  }, [boards]);
+  const taskBoards = data.find((board) => board.id === selectBoard.id);
 
   return (
     <>
@@ -37,7 +44,7 @@ function App() {
       </header>
       <main>
         <Sidebar
-          boards={nameBoards}
+          boards={boards}
           selectBoard={selectBoard}
           setSelectBoard={setSelectBoard}
           isSidebarHide={isSidebarHide}
@@ -48,13 +55,28 @@ function App() {
       </main>
       <Modal isOpen={isModal} onClose={() => setIsModal(false)}>
         {isModal === 'createBoard' && (
-          <CreateBoard setBoards={setBoards} setIsModal={setIsModal} />
+          <BaseBoard
+            title="Add new board"
+            setData={setData}
+            setIsModal={setIsModal}
+            handler={handleCreateBoard}
+          />
         )}
         {isModal === 'editBoard' && (
-          <EditBoard
+          <BaseBoard
+            title="Edit board"
             taskBoards={taskBoards}
-            setBoards={setBoards}
+            setData={setData}
             setIsModal={setIsModal}
+            handler={handleEditBoard}
+          />
+        )}
+        {isModal === 'deleteBoard' && (
+          <DeleteBoard
+            boardName={selectBoard.name}
+            setIsModal={setIsModal}
+            setData={setData}
+            handler={handleDeleteBoard}
           />
         )}
         {isModal === 'createTask' && <CreateTask />}

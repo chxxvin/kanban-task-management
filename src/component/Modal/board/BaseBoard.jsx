@@ -1,10 +1,25 @@
 import { useState } from 'react';
-import style from './EditBoard.module.css';
-import iconCross from '../../../../assets/icon-cross.svg';
+import style from './BaseBoard.module.css';
+import iconCross from '../../../assets/icon-cross.svg';
 
-function EditBoard({ setBoards, setIsModal, taskBoards }) {
-  const [boardName, setBoardName] = useState(taskBoards.name);
-  const [columns, setColumns] = useState(taskBoards.columns);
+function BaseBoard({ title, taskBoards = null, handler, setData, setIsModal }) {
+  const initialColumn = [
+    {
+      id: `col-${crypto.randomUUID()}`,
+      name: 'Todo',
+      tasks: [],
+    },
+    {
+      id: `col-${crypto.randomUUID()}`,
+      name: 'Doing',
+      tasks: [],
+    },
+  ];
+
+  const [boardName, setBoardName] = useState(taskBoards ? taskBoards.name : '');
+  const [columns, setColumns] = useState(
+    taskBoards ? taskBoards.columns : initialColumn
+  );
 
   function handleAddColumn() {
     setColumns((prevCol) => [
@@ -31,28 +46,18 @@ function EditBoard({ setBoards, setIsModal, taskBoards }) {
 
   function handleSubmitBoard(e) {
     e.preventDefault();
-    const updateBoard = {
-      id: `${taskBoards.id}`,
-      name: boardName,
-      columns,
-    };
-    setIsModal(false);
-    setBoards((prevBoards) =>
-      prevBoards.map((board) =>
-        board.id === taskBoards.id ? updateBoard : board
-      )
-    );
+    handler(boardName, columns, setData, setIsModal);
   }
 
   return (
     <div>
-      <h3>Edit board</h3>
+      <h3>{title}</h3>
       <form onSubmit={handleSubmitBoard}>
         <div className={style.boardName}>
           <label htmlFor="board-name">Board Name</label>
           <input
             type="text"
-            name=""
+            name="boardName"
             id="board-name"
             value={boardName}
             onChange={(e) => setBoardName(e.target.value)}
@@ -87,11 +92,12 @@ function EditBoard({ setBoards, setIsModal, taskBoards }) {
           <button type="button" onClick={handleAddColumn}>
             + Add New Column
           </button>
-          <button type="submit">Save Changes</button>
+          {!taskBoards && <button type="submit">Create New Board</button>}
+          {taskBoards && <button type="submit">Save Changes</button>}
         </div>
       </form>
     </div>
   );
 }
 
-export default EditBoard;
+export default BaseBoard;

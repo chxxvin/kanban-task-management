@@ -1,0 +1,47 @@
+.deleteBoard h3 {
+  color: #ea5555;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.deleteBoard p {
+  color: #828fa3;
+  font-size: 13px;
+  margin-bottom: 25px;
+  line-height: 1.75;
+}
+
+.deleteBoardButtons {
+  display: flex;
+  justify-content: space-around;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.deleteBoardButtons button {
+  width: 100%;
+  border: none;
+  padding: 10px 0;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.deleteBoardButtons button:first-child {
+  color: white;
+  background-color: #ea5555;
+}
+
+.deleteBoardButtons button:first-child:hover {
+  background-color: #ff9898;
+}
+
+.deleteBoardButtons button:last-child {
+  color: #635fc7;
+  background-color: rgba(99, 95, 199, 0.1);
+}
+
+.deleteBoardButtons button:last-child:hover {
+  background-color: rgba(99, 95, 199, 0.25);
+}
