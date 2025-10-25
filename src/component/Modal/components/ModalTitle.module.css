@@ -1,0 +1,30 @@
+.modalTitle {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.modalTitle label {
+  font-size: 12px;
+  font-weight: bold;
+  color: #828fa3;
+}
+
+.modalTitle input {
+  padding: 10px 15px;
+  margin-top: 10px;
+  border: 1px solid rgba(130, 143, 163, 0.25);
+  border-radius: 5px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.modalTitle input::placeholder {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.modalTitle input:focus {
+  outline: 1px solid #635fc7;
+}

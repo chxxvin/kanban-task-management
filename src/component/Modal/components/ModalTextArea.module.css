@@ -1,0 +1,31 @@
+.modalTextArea {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.modalTextArea label {
+  font-size: 12px;
+  font-weight: bold;
+  color: #828fa3;
+}
+
+.modalTextArea textarea {
+  height: 135px;
+  padding: 10px 15px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid rgba(130, 143, 163, 0.25);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.modalTextArea textarea::placeholder {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.modalTextArea textarea:focus {
+  outline: 1px solid #635fc7;
+}

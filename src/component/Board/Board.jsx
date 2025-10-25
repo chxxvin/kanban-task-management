@@ -2,9 +2,9 @@ import { useEffect, useRef } from 'react';
 import Task from '../Task/Task';
 import style from './Board.module.css';
 
-function Board({ isSidebarHide, taskBoards }) {
+function Board({ isSidebarHide, board, setSelectTask }) {
   const boardRef = useRef(null);
-  const colBoard = taskBoards ? taskBoards.columns : [];
+  const colBoard = board ? board.columns : [];
 
   useEffect(() => {
     const board = boardRef.current;
@@ -17,14 +17,18 @@ function Board({ isSidebarHide, taskBoards }) {
 
   return (
     <div className={style.board} ref={boardRef}>
-      {colBoard.map((col, index) => {
+      {colBoard.map((col) => {
         return (
-          <div className={style.column} key={index}>
+          <div className={style.column} key={col.id}>
             <h3 className={style.columnName}>
               {col.name} ({col.tasks.length})
             </h3>
-            {col.tasks.map((task, index) => (
-              <Task task={task} key={index} />
+            {col.tasks.map((task) => (
+              <Task
+                task={task}
+                key={task.id}
+                handler={() => setSelectTask(task)}
+              />
             ))}
           </div>
         );

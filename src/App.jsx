@@ -6,7 +6,7 @@ import Sidebar from './component/Sidebar/Sidebar';
 import Board from './component/Board/Board';
 import { useMemo, useState } from 'react';
 import Modal from './component/Modal/Modal';
-import CreateTask from './component/Modal/create/Task/CreateTask';
+import BaseTask from './component/Modal/task/BaseTask';
 import BaseBoard from './component/Modal/board/BaseBoard';
 
 import dummy from './data/dummy';
@@ -17,7 +17,7 @@ function App() {
   const [data, setData] = useState(dummy);
   const [isModal, setIsModal] = useState(false);
 
-  const boards = useMemo(() => {
+  const itemBoards = useMemo(() => {
     return data.map((d) => ({
       id: d.id,
       name: d.name,
@@ -32,9 +32,10 @@ function App() {
     handleCreateBoard,
     handleEditBoard,
     handleDeleteBoard,
-  } = useBoards(boards);
+  } = useBoards(itemBoards);
 
-  const taskBoards = data.find((board) => board.id === selectBoard.id);
+  const board = data.find((board) => board.id === selectBoard.id);
+  const [selectTask, setSelectTask] = useState([]);
 
   return (
     <>
@@ -44,14 +45,18 @@ function App() {
       </header>
       <main>
         <Sidebar
-          boards={boards}
+          itemBoards={itemBoards}
           selectBoard={selectBoard}
           setSelectBoard={setSelectBoard}
           isSidebarHide={isSidebarHide}
           setIsSidebarHide={setIsSidebarHide}
           setIsModal={setIsModal}
         />
-        <Board isSidebarHide={isSidebarHide} taskBoards={taskBoards} />
+        <Board
+          isSidebarHide={isSidebarHide}
+          board={board}
+          setSelectTask={setSelectTask}
+        />
       </main>
       <Modal isOpen={isModal} onClose={() => setIsModal(false)}>
         {isModal === 'createBoard' && (
@@ -65,7 +70,7 @@ function App() {
         {isModal === 'editBoard' && (
           <BaseBoard
             title="Edit board"
-            taskBoards={taskBoards}
+            board={board}
             setData={setData}
             setIsModal={setIsModal}
             handler={handleEditBoard}
@@ -79,7 +84,9 @@ function App() {
             handler={handleDeleteBoard}
           />
         )}
-        {isModal === 'createTask' && <CreateTask />}
+        {isModal === 'createTask' && (
+          <BaseTask columns={board.columns} task={selectTask} />
+        )}
       </Modal>
     </>
   );

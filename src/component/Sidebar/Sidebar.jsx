@@ -10,7 +10,7 @@ function onSelectBoard(board, setSelectBoard) {
 }
 
 function Sidebar({
-  boards,
+  itemBoards,
   selectBoard,
   setSelectBoard,
   isSidebarHide,
@@ -39,9 +39,9 @@ function Sidebar({
       ref={sidebarRef}
     >
       <div className={style.container}>
-        <h3>ALL BOARDS ({boards.length})</h3>
+        <h3>ALL BOARDS ({itemBoards.length})</h3>
         <ul>
-          {boards.map((board, i) => {
+          {itemBoards.map((board, i) => {
             return (
               <li
                 key={i}
