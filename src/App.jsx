@@ -37,6 +37,34 @@ function App() {
   const board = data.find((board) => board.id === selectBoard.id);
   const [selectTask, setSelectTask] = useState([]);
 
+  function handleCreateTask(taskTitle, description, items, currentStatus) {
+    const newTask = {
+      id: `ts-${crypto.randomUUID()}`,
+      title: `${taskTitle}`,
+      description: description,
+      subtasks: items,
+    };
+
+    setData((prevData) =>
+      prevData.map((data) => {
+        if (data.id !== board.id) return data;
+
+        const updatedColumn = data.columns.map((col) => {
+          if (col.name !== currentStatus) return col;
+
+          return {
+            ...col,
+            tasks: [...col.tasks, newTask],
+          };
+        });
+
+        return { ...data, columns: updatedColumn };
+      })
+    );
+
+    setIsModal(false);
+  }
+
   return (
     <>
       <header>
@@ -85,7 +113,11 @@ function App() {
           />
         )}
         {isModal === 'createTask' && (
-          <BaseTask columns={board.columns} task={selectTask} />
+          <BaseTask
+            columns={board.columns}
+            task={selectTask}
+            handler={handleCreateTask}
+          />
         )}
       </Modal>
     </>

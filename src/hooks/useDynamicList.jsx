@@ -21,8 +21,8 @@ function useDynamicList(initialValue) {
     );
   }
 
-  function handleDeleteItem(index) {
-    setItems((prevItems) => prevItems.filter((_, i) => i !== index));
+  function handleDeleteItem(id) {
+    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
   }
 
   return {

@@ -1,6 +1,6 @@
 import style from './ModalTitle.module.css';
 
-function ModalTitle({ label, name, boardTitle, setBoardTitle }) {
+function ModalTitle({ label, name, modalTitle, setModalTitle }) {
   return (
     <div className={style.modalTitle}>
       <label htmlFor={name}>{label}</label>
@@ -8,9 +8,8 @@ function ModalTitle({ label, name, boardTitle, setBoardTitle }) {
         type="text"
         name={name}
         id={name}
-        value={boardTitle}
-        onChange={(e) => setBoardTitle(e.target.value)}
-        placeholder="e.g Web Design"
+        value={modalTitle}
+        onChange={(e) => setModalTitle(e.target.value)}
       />
     </div>
   );

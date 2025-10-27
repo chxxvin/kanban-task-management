@@ -2,6 +2,7 @@ import { useState } from 'react';
 import style from './BaseBoard.module.css';
 import ModalTitle from '../components/ModalTitle';
 import DynamicList from '../components/DynamicList';
+import useDynamicList from '../../../hooks/useDynamicList';
 
 function BaseBoard({ title, board = null, handler, setData, setIsModal }) {
   const [boardTitle, setBoardTitle] = useState(board ? board.name : '');
@@ -21,6 +22,9 @@ function BaseBoard({ title, board = null, handler, setData, setIsModal }) {
         },
       ];
 
+  const { items, handleAddItem, handleChangeItem, handleDeleteItem } =
+    useDynamicList(initialValue);
+
   const template = {
     id: '',
     name: '',
@@ -29,7 +33,7 @@ function BaseBoard({ title, board = null, handler, setData, setIsModal }) {
 
   function handleSubmitBoard(e) {
     e.preventDefault();
-    handler(boardTitle, initialValue, setData, setIsModal);
+    handler(boardTitle, items, setData, setIsModal);
   }
 
   return (
@@ -39,14 +43,19 @@ function BaseBoard({ title, board = null, handler, setData, setIsModal }) {
         <ModalTitle
           label="Board Name"
           name="boardTitle"
-          boardTitle={boardTitle}
-          setBoardTitle={setBoardTitle}
+          modalTitle={boardTitle}
+          setModalTitle={setBoardTitle}
         />
         <DynamicList
           title="Board Columns"
-          initialValue={initialValue}
           template={template}
           prefix="col"
+          keyTitle="name"
+          items={items}
+          handleAddItem={handleAddItem}
+          handleChangeItem={handleChangeItem}
+          handleDeleteItem={handleDeleteItem}
+          addLabel="Add New Column"
         />
         <div className={style.buttonForm}>
           {!board && <button type="submit">Create New Board</button>}

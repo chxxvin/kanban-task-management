@@ -1,17 +1,14 @@
-import { useState } from 'react';
 import style from './ModalTextArea.module.css';
 
-function ModalTextArea() {
-  const [value, setValue] = useState('');
-
+function ModalTextArea({ description, setDescription }) {
   return (
     <div className={style.modalTextArea}>
       <label htmlFor="description">Description</label>
       <textarea
         name="description"
         id="description"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
       />
     </div>
   );
