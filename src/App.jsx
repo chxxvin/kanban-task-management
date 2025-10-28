@@ -12,6 +12,7 @@ import BaseBoard from './component/Modal/board/BaseBoard';
 import dummy from './data/dummy';
 import DeleteBoard from './component/Modal/board/DeleteBoard';
 import useBoards from './hooks/useBoards';
+import DetailTask from './component/Modal/task/DetailTask';
 
 function App() {
   const [data, setData] = useState(dummy);
@@ -84,6 +85,7 @@ function App() {
           isSidebarHide={isSidebarHide}
           board={board}
           setSelectTask={setSelectTask}
+          setIsModal={setIsModal}
         />
       </main>
       <Modal isOpen={isModal} onClose={() => setIsModal(false)}>
@@ -117,6 +119,13 @@ function App() {
             columns={board.columns}
             task={selectTask}
             handler={handleCreateTask}
+          />
+        )}
+        {isModal === 'detailTask' && (
+          <DetailTask
+            columns={board.columns}
+            selectTask={selectTask}
+            setIsModal={setIsModal}
           />
         )}
       </Modal>

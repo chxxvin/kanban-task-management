@@ -1,0 +1,71 @@
+.detailTask .header {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detailTask .subtaskContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.detailTask .subtaskContainer h3 {
+  font-size: 12px;
+  font-weight: bold;
+  color: #828fa3;
+  letter-spacing: 3px;
+  margin-bottom: 5px;
+}
+
+.detailTask .subtaskContainer .subtask {
+  display: flex;
+  gap: 15px;
+  font-size: 13px;
+  font-weight: bold;
+  background-color: #f4f7fd;
+  padding: 15px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.detailTask .subtaskContainer .subtask:hover {
+  background: rgba(99, 95, 199, 0.3);
+}
+
+.detailTask .subtaskContainer .subtask input[type='checkbox'] {
+  accent-color: #635fc7;
+  min-height: 16px;
+  min-width: 16px;
+}
+
+.elipsisMenu {
+  display: none;
+  position: absolute;
+  top: 45px;
+  right: 0;
+  width: 150px;
+  padding: 15px 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 10px 20px rgba(54, 78, 126, 0.25);
+}
+
+.elipsisMenu button {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  font-size: 13px;
+  text-align: left;
+  border: none;
+  color: #828fa3;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.elipsisMenu button.deleteButton {
+  color: red;
+}

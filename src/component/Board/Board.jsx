@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import Task from '../Task/Task';
 import style from './Board.module.css';
 
-function Board({ isSidebarHide, board, setSelectTask }) {
+function Board({ isSidebarHide, board, setSelectTask, setIsModal }) {
   const boardRef = useRef(null);
   const colBoard = board ? board.columns : [];
 
@@ -27,7 +27,10 @@ function Board({ isSidebarHide, board, setSelectTask }) {
               <Task
                 task={task}
                 key={task.id}
-                handler={() => setSelectTask(task)}
+                handler={() => {
+                  setSelectTask(task);
+                  setIsModal('detailTask');
+                }}
               />
             ))}
           </div>

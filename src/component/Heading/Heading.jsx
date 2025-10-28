@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
 import style from './Heading.module.css';
+import Elipsis from '../Elipsis/Elipsis';
+import { useEffect, useRef, useState } from 'react';
 
 function Heading({ selectBoard, setIsModal }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuRef = useRef(null);
 
   useEffect(() => {
     const menu = menuRef.current;
@@ -15,6 +15,8 @@ function Heading({ selectBoard, setIsModal }) {
     }
   }, [isMenuOpen]);
 
+  const menuRef = useRef(null);
+
   return (
     <>
       <div className={style.heading}>
@@ -23,34 +25,27 @@ function Heading({ selectBoard, setIsModal }) {
           <button onClick={() => setIsModal('createTask')}>
             + Add New Task
           </button>
-          <div
-            className={style.elipsis}
-            onClick={() => setIsMenuOpen((prev) => !prev)}
-          >
-            <div className={style.circle}></div>
-            <div className={style.circle}></div>
-            <div className={style.circle}></div>
-          </div>
+          <Elipsis setIsMenuOpen={setIsMenuOpen} />
         </div>
-      </div>
-      <div className={style.elipsisMenu} ref={menuRef}>
-        <button
-          onClick={() => {
-            setIsModal('editBoard');
-            setIsMenuOpen(false);
-          }}
-        >
-          Edit board
-        </button>
-        <button
-          onClick={() => {
-            setIsModal('deleteBoard');
-            setIsMenuOpen(false);
-          }}
-          className={style.deleteButton}
-        >
-          Delete board
-        </button>
+        <div className={style.elipsisMenu} ref={menuRef}>
+          <button
+            onClick={() => {
+              setIsModal('editBoard');
+              setIsMenuOpen(false);
+            }}
+          >
+            Edit board
+          </button>
+          <button
+            onClick={() => {
+              setIsModal('deleteBoard');
+              setIsMenuOpen(false);
+            }}
+            className={style.deleteButton}
+          >
+            Delete board
+          </button>
+        </div>
       </div>
     </>
   );
