@@ -3,7 +3,7 @@ import Elipsis from '../../Elipsis/Elipsis';
 import ModalSelect from '../components/ModalSelect';
 import style from './DetailTask.module.css';
 
-function DetailTask({ columns, selectTask, setIsModal }) {
+function DetailTask({ columns, selectTask, setIsModal, handler }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [subtasks, setSubtasks] = useState(selectTask.subtasks);
 
@@ -73,8 +73,9 @@ function DetailTask({ columns, selectTask, setIsModal }) {
           <div
             className={style.subtask}
             onClick={() => handleSubtask(subtask.id)}
+            key={subtask.id}
           >
-            <input type="checkbox" checked={subtask.done} />
+            <input type="checkbox" onChange={() => {}} checked={subtask.done} />
             <p>{subtask.title}</p>
           </div>
         ))}
@@ -84,6 +85,13 @@ function DetailTask({ columns, selectTask, setIsModal }) {
         currentStatus={currentStatus}
         setCurrentStatus={setCurrentStatus}
       />
+      <button
+        type="button"
+        className={style.saveButton}
+        onClick={() => handler(selectTask, subtasks, currentStatus)}
+      >
+        Save
+      </button>
     </div>
   );
 }

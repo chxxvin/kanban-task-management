@@ -66,6 +66,59 @@ function App() {
     setIsModal(false);
   }
 
+  function handleUpdateTask(selectTask, subtasks, currentStatus) {
+    console.log(currentStatus);
+
+    setData((prevData) =>
+      prevData.map((data) => {
+        if (data.id !== board.id) return data;
+
+        const prevStatus = data.columns.find((col) =>
+          col.tasks.some((t) => t.id === selectTask.id)
+        );
+
+        if (prevStatus.name === currentStatus) {
+          return {
+            ...data,
+            columns: data.columns.map((col) =>
+              col.name !== currentStatus
+                ? col
+                : {
+                    ...col,
+                    tasks: col.tasks.map((task) =>
+                      task.id !== selectTask.id ? task : { ...task, subtasks }
+                    ),
+                  }
+            ),
+          };
+        }
+
+        return {
+          ...data,
+          columns: data.columns.map((col) => {
+            if (col.name === prevStatus.name) {
+              return {
+                ...col,
+                tasks: col.tasks.filter((task) => task.id !== selectTask.id),
+              };
+            }
+
+            if (col.name === currentStatus) {
+              return {
+                ...col,
+                tasks: [...col.tasks, { ...selectTask, subtasks }],
+              };
+            }
+
+            return col;
+          }),
+        };
+      })
+    );
+
+    setIsModal(false);
+  }
+
   return (
     <>
       <header>
@@ -126,6 +179,7 @@ function App() {
             columns={board.columns}
             selectTask={selectTask}
             setIsModal={setIsModal}
+            handler={handleUpdateTask}
           />
         )}
       </Modal>
