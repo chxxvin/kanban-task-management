@@ -10,9 +10,9 @@ import BaseTask from './component/Modal/task/BaseTask';
 import BaseBoard from './component/Modal/board/BaseBoard';
 
 import dummy from './data/dummy';
-import DeleteBoard from './component/Modal/board/DeleteBoard';
 import useBoards from './hooks/useBoards';
 import DetailTask from './component/Modal/task/DetailTask';
+import ModalDelete from './component/Modal/components/ModalDelete';
 
 function App() {
   const [data, setData] = useState(dummy);
@@ -183,6 +183,32 @@ function App() {
     setIsModal(false);
   }
 
+  function handleDeleteTask(setData, setIsModal) {
+    setData((prevData) =>
+      prevData.map((data) => {
+        if (data.id !== board.id) return data;
+
+        const currentStatus = data.columns.find((col) =>
+          col.tasks.some((task) => task.id === selectTask.id)
+        );
+
+        return {
+          ...data,
+          columns: data.columns.map((col) =>
+            col.name !== currentStatus.name
+              ? col
+              : {
+                  ...col,
+                  tasks: col.tasks.filter((task) => task.id !== selectTask.id),
+                }
+          ),
+        };
+      })
+    );
+
+    setIsModal(false);
+  }
+
   return (
     <>
       <header>
@@ -224,12 +250,17 @@ function App() {
           />
         )}
         {isModal === 'deleteBoard' && (
-          <DeleteBoard
-            boardName={selectBoard.name}
-            setIsModal={setIsModal}
+          <ModalDelete
             setData={setData}
+            setIsModal={setIsModal}
             handler={handleDeleteBoard}
-          />
+          >
+            <h3>Delete this board?</h3>
+            <p>
+              Are you sure you want to delete the "{board.name}" board? This
+              action will remove all columns and tasks and cannot be reversed.
+            </p>
+          </ModalDelete>
         )}
         {isModal === 'createTask' && (
           <BaseTask
@@ -255,6 +286,19 @@ function App() {
             addLabel="Save changes"
             handler={handleEditTask}
           />
+        )}
+        {isModal === 'deleteTask' && (
+          <ModalDelete
+            setData={setData}
+            setIsModal={setIsModal}
+            handler={handleDeleteTask}
+          >
+            <h3>Delete this task?</h3>
+            <p>
+              Are you sure you want to delete the "{selectTask.title}" task and
+              its subtasks? This action cannot be reversed.
+            </p>
+          </ModalDelete>
         )}
       </Modal>
     </>

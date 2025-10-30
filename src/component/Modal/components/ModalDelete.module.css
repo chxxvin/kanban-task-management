@@ -1,24 +1,24 @@
-.deleteBoard h3 {
+.modalDelete h3 {
   color: #ea5555;
   font-size: 18px;
   margin-bottom: 20px;
 }
 
-.deleteBoard p {
+.modalDelete p {
   color: #828fa3;
   font-size: 13px;
   margin-bottom: 25px;
   line-height: 1.75;
 }
 
-.deleteBoardButtons {
+.modalDeleteButtons {
   display: flex;
   justify-content: space-around;
   gap: 15px;
   margin-bottom: 20px;
 }
 
-.deleteBoardButtons button {
+.modalDeleteButtons button {
   width: 100%;
   border: none;
   padding: 10px 0;
@@ -28,20 +28,20 @@
   cursor: pointer;
 }
 
-.deleteBoardButtons button:first-child {
+.modalDeleteButtons button:first-child {
   color: white;
   background-color: #ea5555;
 }
 
-.deleteBoardButtons button:first-child:hover {
+.modalDeleteButtons button:first-child:hover {
   background-color: #ff9898;
 }
 
-.deleteBoardButtons button:last-child {
+.modalDeleteButtons button:last-child {
   color: #635fc7;
   background-color: rgba(99, 95, 199, 0.1);
 }
 
-.deleteBoardButtons button:last-child:hover {
+.modalDeleteButtons button:last-child:hover {
   background-color: rgba(99, 95, 199, 0.25);
 }
