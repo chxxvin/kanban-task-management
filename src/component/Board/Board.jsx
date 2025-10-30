@@ -36,7 +36,9 @@ function Board({ isSidebarHide, board, setSelectTask, setIsModal }) {
           </div>
         );
       })}
-      <div className={style.addColumn}>+ New Column</div>
+      <div className={style.addColumn} onClick={() => setIsModal('editBoard')}>
+        + New Column
+      </div>
     </div>
   );
 }
