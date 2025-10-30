@@ -1,8 +1,6 @@
 import style from './ModalSelect.module.css';
 
 function ModalSelect({ columns, currentStatus, setCurrentStatus }) {
-  console.log(currentStatus);
-
   return (
     <div className={style.modalSelect}>
       <label htmlFor="currentStatus">Current Status</label>

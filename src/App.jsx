@@ -67,8 +67,6 @@ function App() {
   }
 
   function handleUpdateTask(selectTask, subtasks, currentStatus) {
-    console.log(currentStatus);
-
     setData((prevData) =>
       prevData.map((data) => {
         if (data.id !== board.id) return data;
@@ -107,6 +105,72 @@ function App() {
               return {
                 ...col,
                 tasks: [...col.tasks, { ...selectTask, subtasks }],
+              };
+            }
+
+            return col;
+          }),
+        };
+      })
+    );
+
+    setIsModal(false);
+  }
+
+  function handleEditTask(taskTitle, description, items, currentStatus) {
+    setData((prevData) =>
+      prevData.map((data) => {
+        if (data.id !== board.id) return data;
+
+        const prevStatus = data.columns.find((col) =>
+          col.tasks.some((t) => t.id === selectTask.id)
+        );
+
+        if (prevStatus.name === currentStatus) {
+          return {
+            ...data,
+            columns: data.columns.map((col) =>
+              col.name !== currentStatus
+                ? col
+                : {
+                    ...col,
+                    tasks: col.tasks.map((task) =>
+                      task.id !== selectTask.id
+                        ? task
+                        : {
+                            ...task,
+                            title: taskTitle,
+                            description: description,
+                            subtasks: items,
+                          }
+                    ),
+                  }
+            ),
+          };
+        }
+
+        return {
+          ...data,
+          columns: data.columns.map((col) => {
+            if (col.name === prevStatus.name) {
+              return {
+                ...col,
+                tasks: col.tasks.filter((task) => task.id !== selectTask.id),
+              };
+            }
+
+            if (col.name === currentStatus) {
+              return {
+                ...col,
+                tasks: [
+                  ...col.tasks,
+                  {
+                    ...selectTask,
+                    title: taskTitle,
+                    description: description,
+                    subtasks: items,
+                  },
+                ],
               };
             }
 
@@ -169,9 +233,10 @@ function App() {
         )}
         {isModal === 'createTask' && (
           <BaseTask
+            title="Add New Task"
             columns={board.columns}
-            task={selectTask}
             handler={handleCreateTask}
+            addLabel="Create task"
           />
         )}
         {isModal === 'detailTask' && (
@@ -180,6 +245,15 @@ function App() {
             selectTask={selectTask}
             setIsModal={setIsModal}
             handler={handleUpdateTask}
+          />
+        )}
+        {isModal === 'editTask' && (
+          <BaseTask
+            title="Edit Task"
+            columns={board.columns}
+            task={selectTask}
+            addLabel="Save changes"
+            handler={handleEditTask}
           />
         )}
       </Modal>

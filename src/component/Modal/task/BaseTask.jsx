@@ -6,10 +6,11 @@ import DynamicList from '../components/DynamicList';
 import ModalSelect from '../components/ModalSelect';
 import useDynamicList from '../../../hooks/useDynamicList';
 
-function BaseTask({ columns, task, handler }) {
-  const [taskTitle, setTaskTitle] = useState('');
-  const [description, setDescription] = useState('');
+function BaseTask({ title, columns, task = null, handler, addLabel }) {
+  const [taskTitle, setTaskTitle] = useState(task ? task.title : '');
+  const [description, setDescription] = useState(task ? task.description : '');
   const [currentStatus, setCurrentStatus] = useState(() => {
+    if (!task) return columns[0].name;
     const column = columns.find((col) =>
       col.tasks.some((t) => t.id === task.id)
     );
@@ -17,8 +18,8 @@ function BaseTask({ columns, task, handler }) {
     return column ? column.name : columns[0].name;
   });
 
-  const initialValue = task.length
-    ? task
+  const initialValue = task
+    ? task.subtasks
     : [
         { id: `st-${crypto.randomUUID()}`, title: '', done: false },
         { id: `st-${crypto.randomUUID()}`, title: '', done: false },
@@ -36,7 +37,7 @@ function BaseTask({ columns, task, handler }) {
 
   return (
     <div className={style.baseTask}>
-      <h3>Add New Task</h3>
+      <h3>{title}</h3>
       <form onSubmit={handleSubmit}>
         <ModalTitle
           label="Task Name"
@@ -65,7 +66,7 @@ function BaseTask({ columns, task, handler }) {
           setCurrentStatus={setCurrentStatus}
         />
         <button className={style.submitButton} type="submit">
-          Create Task
+          {addLabel}
         </button>
       </form>
     </div>
